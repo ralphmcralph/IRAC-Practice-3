@@ -5,7 +5,7 @@
 
 <br/><br/><br/>
 
-##Practice description
+## Practice description
 
 This practice covers the following several aspects related to DASH (Dynamic Adaptive Streaming over HTTP):
 
