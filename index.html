@@ -71,30 +71,30 @@
 			};
 
             const config = {
-					  	type: 'line',
-					  	data,
-					  	options: {
-                            scales:{
-                                bufferY: {
-                                    type: 'linear',
-                                    position: 'left',
-                                    beginAtZero: true,
-                                    title: {
-                                        display: true,
-                                        text: 'Buffer level (s)'
-                                    }
-                                },
-                                bitrateY: {
-                                    type: 'linear',
-                                    position: 'right',
-                                    beginAtZero: true,
-                                    title: {
-                                        display: true,
-                                        text: 'Bitrate (kbps)'
-                                    }
-                                },
+				type: 'line',
+				data,
+				options: {
+                    scales:{
+                        bufferY: {
+                            type: 'linear',
+                            position: 'left',
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'Buffer level (s)'
                             }
-                        }
+                        },
+                        bitrateY: {
+                            type: 'linear',
+                            position: 'right',
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'Bitrate (kbps)'
+                            }
+                        },
+                    }
+                }
             };
 
             myChart = new Chart(document.getElementById('myChart'), config);
