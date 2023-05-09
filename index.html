@@ -5,12 +5,22 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+
+    <title>P3 Group 13 - IRAC</title>
+
     <script src="http://cdn.dashjs.org/latest/dash.all.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://momentjs.com/downloads/moment.min.js"></script>
+
 </head>
 
 <body>
-    <h1>Hello world</h1>
+    <h1>P3 - Group 13 - IRAC</h1>
+    <h2>JOSÉ MARÍA FERNÁNDEZ RODRÍGUEZ</h2>
+    <h2>RAFAEL HERMIDA MAYÁN</h2>
+    <h2>RAMÓN HERNÁNDEZ GARCÍA</h2>
+    <h2>DANIEL SANZ SOBRINO</h2>
+
     <div class="code">
         <video class="dashjs-player" autoplay controls preload="auto" muted> </video>
     </div>
@@ -68,6 +78,54 @@
                 clearInterval(eventPoller);
             });
 
+            const data = {
+                datasets: [{
+                    label: 'Buffer Level',
+                    yAxisID: 'bufferY',
+                    backgroundColor: 'rgb(0, 204, 0, 0.5)',
+                    borderColor: 'rgb(0, 204, 0, 1)',
+                    tension: 0.5,
+                    fill: true
+                },
+
+                {
+                    label: 'Bitrate',
+                    yAxisID: 'bitrateY',
+                    backgroundColor: 'rgb(0, 128, 255, 0.5)',
+                    borderColor: 'rgb(0, 128, 255, 1)',
+                    tension: 0.5,
+                    fill: true
+                }]
+            };
+
+            const config = {
+                type: 'line',
+                data,
+                options: {
+                    scales: {
+                        bufferY: {
+                            type: 'linear',
+                            position: 'left',
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'Buffer level (s)'
+                            }
+                        },
+                        bitrateY: {
+                            type: 'linear',
+                            position: 'right',
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'Bitrate (kbps)'
+                            }
+                        },
+                    }
+                }
+            };
+
+            myChart = new Chart(document.getElementById('myChart'), config);
 
             var eventPoller = setInterval(function () {
                 var streamInfo = player.getActiveStream().getStreamInfo();
@@ -82,6 +140,12 @@
                     document.getElementById('buffer').innerText = bufferLevel + " secs";
                     document.getElementById('bitrate').innerText = bitrate;
                     document.getElementById('representation').innerText = repSwitch ? repSwitch.to : NaN;
+
+                    var label = moment().format("HH:mm:ss");
+                    myChart.data.labels.push(label);
+                    myChart.data.datasets[0].data.push(bufferLevel);
+                    myChart.data.datasets[1].data.push(bitrate);
+                    myChart.update();
                 }
             }, 500);
         }
@@ -90,7 +154,12 @@
             init();
         });
 
+
     </script>
+
+    <div>
+        <canvas id="myChart"></canvas>
+    </div>
 
 </body>
 
