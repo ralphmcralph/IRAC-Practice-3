@@ -12,6 +12,5 @@ This practice covers the following several aspects related to DASH (Dynamic Adap
 * Introduction to the dash.js web client
 * Preparation of videos to be offered through dash.js and viewing associated metrics
 * Management of digital rights through dash.js
-* Viewing metrics through graphs; 
-* Dynamic DRM key management and advanced DRM management. 
+* Viewing metrics through graphs 
 
