@@ -20,7 +20,7 @@
     <h2>RAFAEL HERMIDA MAYÁN</h2>
     <h2>RAMÓN HERNÁNDEZ GARCÍA</h2>
     <h2>DANIEL SANZ SOBRINO</h2>
-        
+
     <div class="code">
         <video class="dashjs-player" autoplay controls preload="auto" muted> </video>
     </div>
@@ -29,15 +29,11 @@
         <p>Video Buffer: <span id="buffer"></span> seconds</p>
         <p>Video Representation: <span id="representation"></span></p>
     </div>
-    <script>  var player; document.addEventListener("DOMContentLoaded", function () { init(); }); function init() { player = dashjs.MediaPlayerFactory.create(document.querySelector(".dashjsplayer")); }; 
-    </script>
-
     
 
+
+
     <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            init();
-        });
 
         function init() {
             var video,
@@ -51,30 +47,30 @@
             });
 
             const data = {
-				datasets: [{
-					label: 'Buffer Level',
-					yAxisID: 'bufferY',
-					backgroundColor: 'rgb(0, 204, 0, 0.5)',
-					borderColor: 'rgb(0, 204, 0, 1)',
-					tension: 0.5,
-					fill: true
-				},
+                datasets: [{
+                    label: 'Buffer Level',
+                    yAxisID: 'bufferY',
+                    backgroundColor: 'rgb(0, 204, 0, 0.5)',
+                    borderColor: 'rgb(0, 204, 0, 1)',
+                    tension: 0.5,
+                    fill: true
+                },
 
-				{
-					label: 'Bitrate',
-					yAxisID: 'bitrateY',
-					backgroundColor: 'rgb(0, 128, 255, 0.5)',
-					borderColor: 'rgb(0, 128, 255, 1)',
-					tension: 0.5,
-					fill: true
-				}]
-			};
+                {
+                    label: 'Bitrate',
+                    yAxisID: 'bitrateY',
+                    backgroundColor: 'rgb(0, 128, 255, 0.5)',
+                    borderColor: 'rgb(0, 128, 255, 1)',
+                    tension: 0.5,
+                    fill: true
+                }]
+            };
 
             const config = {
-				type: 'line',
-				data,
-				options: {
-                    scales:{
+                type: 'line',
+                data,
+                options: {
+                    scales: {
                         bufferY: {
                             type: 'linear',
                             position: 'left',
@@ -110,25 +106,29 @@
                     var bufferLevel = dashMetrics.getCurrentBufferLevel('video', true);
                     var bitrate = repSwitch ? Math.round(dashAdapter.getBandwidthForRepresentation(repSwitch.to, periodIdx) / 1000) : NaN;
                     document.getElementById('buffer').innerText = bufferLevel + " secs";
-                    document.getElementById('bitrate').innerText = bitrate + " Kbps";
-                    document.getElementById('representation').innerText = repSwitch.to;
+                    document.getElementById('bitrate').innerText = bitrate;
+                    document.getElementById('representation').innerText = repSwitch ? repSwitch.to : NaN;
 
                     var label = moment().format("HH:mm:ss");
-					myChart.data.labels.push(label);	
-					myChart.data.datasets[0].data.push(bufferLevel);
-					myChart.data.datasets[1].data.push(bitrate);
-					myChart.update();	
+                    myChart.data.labels.push(label);
+                    myChart.data.datasets[0].data.push(bufferLevel);
+                    myChart.data.datasets[1].data.push(bitrate);
+                    myChart.update();
                 }
             }, 500);
-        } 
+        }
 
-        
+        document.addEventListener("DOMContentLoaded", function () {
+            init();
+        });
+
+
     </script>
 
     <div>
         <canvas id="myChart"></canvas>
     </div>
-  
+
 </body>
 
 </html>
