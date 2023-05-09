@@ -11,25 +11,41 @@
     <script src="http://cdn.dashjs.org/latest/dash.all.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://momentjs.com/downloads/moment.min.js"></script>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="/styles.css">
 
 </head>
 
 <body>
     <h1>P3 - Group 13 - IRAC</h1>
-    <h2>JOSÉ MARÍA FERNÁNDEZ RODRÍGUEZ</h2>
-    <h2>RAFAEL HERMIDA MAYÁN</h2>
-    <h2>RAMÓN HERNÁNDEZ GARCÍA</h2>
-    <h2>DANIEL SANZ SOBRINO</h2>
 
-    <div class="code">
+    
+
+    <div class="container">
+    <div class="code video">
         <video class="dashjs-player" autoplay controls preload="auto" muted> </video>
     </div>
 
-    <div class="code">
+    <div class="code metrics">
+        <h2>METRICS</h2>
         <p>Video Bitrate: <span id="bitrate"></span> kbps</p>
         <p>Video Buffer: <span id="buffer"></span> seconds</p>
         <p>Video Representation: <span id="representation"></span></p>
     </div>
+
+    <div class="chart">
+        <canvas id="myChart"></canvas>
+    </div>
+    
+    </div>
+
+    <footer>
+        <h3>JOSÉ MARÍA FERNÁNDEZ RODRÍGUEZ</h3>
+        <h3>RAFAEL HERMIDA MAYÁN</h3>
+        <h3>RAMÓN HERNÁNDEZ GARCÍA</h3>
+        <h3>DANIEL SANZ SOBRINO</h3>
+    </footer>
+
 
     <script>
 
@@ -157,9 +173,8 @@
 
     </script>
 
-    <div>
-        <canvas id="myChart"></canvas>
-    </div>
+
+
 
 </body>
 
